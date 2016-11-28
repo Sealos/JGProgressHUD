@@ -29,25 +29,25 @@
  Called before the HUD will appear.
  @param view The view in which the HUD is presented.
  */
-- (void)progressHUD:(JGProgressHUD *)progressHUD willPresentInView:(UIView *)view;
+- (void)progressHUD:(nonnull JGProgressHUD *)progressHUD willPresentInView:(nonnull UIView *)view;
 
 /**
  Called after the HUD appeared.
  @param view The view in which the HUD is presented.
  */
-- (void)progressHUD:(JGProgressHUD *)progressHUD didPresentInView:(UIView *)view;
+- (void)progressHUD:(nonnull JGProgressHUD *)progressHUD didPresentInView:(nonnull UIView *)view;
 
 /**
  Called before the HUD will disappear.
  @param view The view in which the HUD is presented and will be dismissed from.
  */
-- (void)progressHUD:(JGProgressHUD *)progressHUD willDismissFromView:(UIView *)view;
+- (void)progressHUD:(nonnull JGProgressHUD *)progressHUD willDismissFromView:(nonnull UIView *)view;
 
 /**
  Called after the HUD has disappeared.
  @param view The view in which the HUD was presented and was be dismissed from.
  */
-- (void)progressHUD:(JGProgressHUD *)progressHUD didDismissFromView:(UIView *)view;
+- (void)progressHUD:(nonnull JGProgressHUD *)progressHUD didDismissFromView:(nonnull UIView *)view;
 
 @end
 
@@ -62,13 +62,13 @@
  Designated initializer.
  @param style The appearance style of the HUD.
  */
-- (instancetype)initWithStyle:(JGProgressHUDStyle)style;
+- (nonnull instancetype)initWithStyle:(JGProgressHUDStyle)style;
 
 /**
  Convenience initializer.
  @param style The appearance style of the HUD.
  */
-+ (instancetype)progressHUDWithStyle:(JGProgressHUDStyle)style;
++ (nonnull instancetype)progressHUDWithStyle:(JGProgressHUDStyle)style;
 
 
 
@@ -76,54 +76,54 @@
 /**
  The view in which the HUD is presented.
  */
-@property (nonatomic, weak, readonly) UIView *targetView;
+@property (nonatomic, weak, readonly, nullable) UIView *targetView;
 
 /**
  The delegate of the HUD.
  @sa JGProgressHUDDelegate.
  */
-@property (nonatomic, weak) id <JGProgressHUDDelegate> delegate;
+@property (nonatomic, weak, nullable) id <JGProgressHUDDelegate> delegate;
 
 /**
  A block to be invoked when the HUD view is tapped.
  
  @note The interaction type of the HUD must be @c JGProgressHUDInteractionTypeBlockTouchesOnHUDView or @c JGProgressHUDInteractionTypeBlockAllTouches, otherwise this block won't be fired.
  */
-@property (nonatomic, copy) void (^tapOnHUDViewBlock)(JGProgressHUD *HUD);
+@property (nonatomic, copy, nullable) void (^tapOnHUDViewBlock)(JGProgressHUD *_Nonnull HUD);
 
 /**
  A block to be invoked when the area outside of the HUD view is tapped.
  
  @note The interaction type of the HUD must be @c JGProgressHUDInteractionTypeBlockAllTouches, otherwise this block won't be fired.
  */
-@property (nonatomic, copy) void (^tapOutsideBlock)(JGProgressHUD *HUD);
+@property (nonatomic, copy, nullable) void (^tapOutsideBlock)(JGProgressHUD *_Nonnull HUD);
 
 /**
  The actual HUD view visible on screen. You may add animations or shadows to this view.
  */
-@property (nonatomic, strong, readonly) UIView *HUDView;
+@property (nonatomic, strong, readonly, nonnull) UIView *HUDView;
 
 /**
  The content view inside the @c HUDView. If you want to add additional views to the HUD you should add them as subview to the @c contentView.
  */
-@property (nonatomic, strong, readonly) UIView *contentView;
+@property (nonatomic, strong, readonly, nonnull) UIView *contentView;
 
 /**
  The label used to present text on the HUD. Set the @c text property of this label to change the displayed text. You may not change the label's @c frame or @c bounds.
  */
-@property (nonatomic, strong, readonly) UILabel *textLabel;
+@property (nonatomic, strong, readonly, nonnull) UILabel *textLabel;
 
 /**
  The label used to present detail text on the HUD. Set the @c text property of this label to change the displayed text. You may not change the label's @c frame or @c bounds.
  */
-@property (nonatomic, strong, readonly) UILabel *detailTextLabel;
+@property (nonatomic, strong, readonly, nonnull) UILabel *detailTextLabel;
 
 /**
  The indicator view. You can assign a custom subclass of JGProgressHUDIndicatorView to this property or one of the default indicator views (if you do so, you should assign it before showing the HUD).
  
  @b Default: JGProgressHUDIndeterminateIndicatorView.
  */
-@property (nonatomic, strong) JGProgressHUDIndicatorView *indicatorView;
+@property (nonatomic, strong, nonnull) JGProgressHUDIndicatorView *indicatorView;
 
 /**
  Interaction type of the HUD. Determines whether touches should be let through to the views behind the HUD.
@@ -190,7 +190,7 @@
  
  @b Default: JGProgressHUDFadeAnimation.
  */
-@property (nonatomic, strong) JGProgressHUDAnimation *animation;
+@property (nonatomic, strong, nonnull) JGProgressHUDAnimation *animation;
 
 /**
  The animation duration for a layout change (ex. Changing the @c text, the @c position, the @c progressIndicatorView or the @c useProgressIndicatorView property).
@@ -240,21 +240,21 @@
  Shows the HUD animated. You should preferably show the HUD in a UIViewController's view. The HUD will be repositioned in response to rotation and keyboard show/hide notifications.
  @param view The view to show the HUD in. The frame of the @c view will be used to calculate the position of the HUD.
  */
-- (void)showInView:(UIView *)view;
+- (void)showInView:(nonnull UIView *)view;
 
 /**
  Shows the HUD. You should preferably show the HUD in a UIViewController's view.  The HUD will be repositioned in response to rotation and keyboard show/hide notifications.
  @param view The view to show the HUD in. The frame of the @c view will be used to calculate the position of the HUD.
  @param animated If the HUD should show with an animation.
  */
-- (void)showInView:(UIView *)view animated:(BOOL)animated;
+- (void)showInView:(nonnull UIView *)view animated:(BOOL)animated;
 
 /**
  Shows the HUD animated. You should preferably show the HUD in a UIViewController's view.
  @param view The view to show the HUD in.
  @param rect The rect allocated in @c view for displaying the HUD.
  */
-- (void)showInRect:(CGRect)rect inView:(UIView *)view;
+- (void)showInRect:(CGRect)rect inView:(nonnull UIView *)view;
 
 /**
  Shows the HUD. You should preferably show the HUD in a UIViewController's view.
@@ -262,7 +262,7 @@
  @param rect The rect allocated in @c view for displaying the HUD.
  @param animated If the HUD should show with an animation.
  */
-- (void)showInRect:(CGRect)rect inView:(UIView *)view animated:(BOOL)animated;
+- (void)showInRect:(CGRect)rect inView:(nonnull UIView *)view animated:(BOOL)animated;
 
 
 
@@ -302,12 +302,12 @@
  @param view The view to return all visible progress HUDs for.
  @return All visible progress HUDs in the view.
  */
-+ (NSArray *)allProgressHUDsInView:(UIView *)view;
++ (nonnull NSArray *)allProgressHUDsInView:(nonnull UIView *)view;
 
 /**
  @param view The view to return all visible progress HUDs for.
  @return All visible progress HUDs in the view and its subviews.
  */
-+ (NSArray *)allProgressHUDsInViewHierarchy:(UIView *)view;
++ (nonnull NSArray *)allProgressHUDsInViewHierarchy:(nonnull UIView *)view;
 
 @end
